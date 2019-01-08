@@ -34,7 +34,7 @@
             Sample Database String from Heroku
             'postgres://wvvgxgeoriumxg:c4e8612ae286a211a8c94976df0811e9b6fcdacb3ef3e468401e0619b38a1004@ec2-107-22-168-211.compute-1.amazonaws.com:5432/d5siauekbh9qlu' 
             */
-            $dbconn = pg_connect("host=ec2-107-22-168-211.compute-1.amazonaws.com port=5432 dbname=d5siauekbh9qlu user=wvvgxgeoriumxg password=c4e8612ae286a211a8c94976df0811e9b6fcdacb3ef3e468401e0619b38a1004");
+            $dbconn = pg_connect(getenv("DATABASE_URL"));
             $fName = pg_escape_string($_POST['firstName']);
             $lName = pg_escape_string($_POST['lastName']);
             
@@ -81,11 +81,11 @@
                 <tbody> 
                         <?   
                             
-                            /*
-                            Use below code to create table and insert some sample records if using first time
+                            
+                            /*Use below code to create table and insert some sample records if using first time
                             $sql = "drop table Person;";
                             pg_query($dbconn, $sql);
-                            
+                            */
                             $sql = "create table Person (id SERIAL PRIMARY KEY, firstName varchar(15), lastName varchar(15) );";
                             pg_query($dbconn, $sql);
                             
@@ -95,7 +95,7 @@
                             pg_query($dbconn, $sql);
                             $sql = "INSERT into Person (firstName,lastName) values ('Minal', 'Zaa')" ;
                             pg_query($dbconn, $sql);
-                            */ 
+                             
                             $sql = "select * from Person";
                             $resultset = pg_query($dbconn, $sql);
                             while($row = pg_fetch_array($resultset)) {
