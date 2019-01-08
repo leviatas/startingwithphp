@@ -85,7 +85,7 @@
                             /*Use below code to create table and insert some sample records if using first time
                             $sql = "drop table Person;";
                             pg_query($dbconn, $sql);
-                            */
+                            
                             $sql = "create table Person (id SERIAL PRIMARY KEY, firstName varchar(15), lastName varchar(15) );";
                             pg_query($dbconn, $sql);
                             
@@ -95,7 +95,7 @@
                             pg_query($dbconn, $sql);
                             $sql = "INSERT into Person (firstName,lastName) values ('Minal', 'Zaa')" ;
                             pg_query($dbconn, $sql);
-                             
+                             */
                             $sql = "select * from Person";
                             $resultset = pg_query($dbconn, $sql);
                             while($row = pg_fetch_array($resultset)) {
